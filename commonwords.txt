@@ -85,7 +85,6 @@ bass
 battle
 beach
 bead
-beads
 beauty
 beep
 befit
@@ -99,7 +98,7 @@ beta
 beyond
 bible
 big
-bills
+bill
 bingo
 bird
 bison
@@ -264,12 +263,11 @@ decay
 decide
 deck
 deed
-deeds
 define
 defuse
 demand
 dental
-dents
+dent
 deploy
 derive
 dice
