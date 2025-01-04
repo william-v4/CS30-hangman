@@ -190,7 +190,6 @@ clean
 clear
 clerk
 cliff
-clim
 climate
 climb
 clip
@@ -394,7 +393,7 @@ gain
 gamble
 game
 gas
-gaslighting
+gaslight
 gasp
 gate
 gather
@@ -860,7 +859,7 @@ team
 tear
 tease
 tech
-tehnology
+technology
 terminal
 test
 text
