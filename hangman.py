@@ -50,6 +50,8 @@ def gameconfig():
     clear()
     # create and place title label
     label("Welcome to Hangman", titletext, 1, 1, columnspan=2)
+    # number of players
+    gui.CTkOptionMenu(window, ["singleplayer", "multiplayer"], "singleplayer")
     # parameter labels
 
 
