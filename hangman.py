@@ -228,11 +228,19 @@ def updateboard():
     wrongdisplay.configure(text=wrongoutput)
     # available graphics
     abductpics = ["abduct1.png", "abduct2.png", "abduct3.png", "abduct4.png", "abduct5.png"]
-    # show appropriate graphic based on guesses left
-    gui.CTkLabel(window, text="", image=PhotoImage(file=abductpics[
-        # max index of abductpics * ratio of guesses left to max guesses, rounded down
-        floor((len(abductpics) - 1) * (maxguesses - guesses) / maxguesses)
-    ])).grid(row=1, column=1, padx=10, pady=10)
+    # frame to display graphic
+    graphicframe = gui.CTkLabel(window, text="")
+    graphicframe.grid(row=1, column=1, padx=10, pady=10)
+    # first, check if guesses are less than 0
+    if guesses <= 0:
+        # set graphic to the last one
+        graphicframe.configure(image=PhotoImage(file=abductpics[-1]))
+    # otherwise, show appropriate graphic based on guesses left
+    else:
+        graphicframe.configure(image=PhotoImage(file=abductpics[
+            # max index of abductpics * ratio of guesses left to max guesses, rounded down
+            floor((len(abductpics) - 1) * (maxguesses - guesses) / maxguesses)
+        ]))
     # update window
     window.update()
     # debug
