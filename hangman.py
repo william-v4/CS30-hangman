@@ -7,10 +7,14 @@ import customtkinter as gui
 from tkinter import *
 from transformers import pipeline
 import torch
+import warnings
 
 # enable brainrot words
 brainrot = True
 
+# suppress warnings
+warnings.filterwarnings("ignore", category=UserWarning, message="CTkLabel Warning: Given image is not CTkImage")
+warnings.filterwarnings("ignore", category=UserWarning, message="CTkButton Warning: Given image is not CTkImage")
 # load fonts
 gui.FontManager.load_font(os.path.join("Poppins-SemiBold.ttf"))
 gui.FontManager.load_font(os.path.join("Roboto-Regular.ttf"))
@@ -42,7 +46,7 @@ def clear():
 # create label (warning: labels created with this cannot be referenced later)
 def label(text : str, style : tuple, row : int, column : int, columnspan=None):
     if columnspan:
-        gui.CTkLabel(window, text=text, font=style).grid(row=row, column=column, columnspan=columnspan, padx=10, pady=10)
+        gui.CTkLabel(window, text=text, font=style).grid(row=row, column=column, columnspan=columnspan, padx=10, pady=10,)
     else:
         gui.CTkLabel(window, text=text, font=style).grid(row=row, column=column, padx=10, pady=10)
 
@@ -158,6 +162,7 @@ def startgame(arg=None):
                 answer = sanitize(LLMphrase())
             # if failed, get a random phrase from list
             except:
+                print("failed to get phrase from LLM")
                 # same process as in getword()
                 answer = random.choice(open("contemporaryphrases.txt", "r").readlines()).replace("\n", "").replace(" ", "").lower()
         # otherwise, get a random word
@@ -231,8 +236,8 @@ def updateboard():
     # update window
     window.update()
     # debug
-    print(answer)
-    print(boardstate)
+    # print(answer)
+    # print(boardstate)
 
 # clear guess input field
 def CE():
@@ -279,7 +284,6 @@ def guess(arg=None):
     elif len(entry) > 1:
         # find the positions of the guess in the answer
         matches = list(re.finditer(r'\b' + re.escape(entry) + r'\b', answer))
-        print(matches)
         # if there are matches
         if matches:
             # for every match
